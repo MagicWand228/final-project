@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна сторінка</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>Ласкаво просимо, {{ nickname }}!</h1>
+    </div>
+
+    <h2>Новини:</h2>
+    <div class="news-list">
+        {% for news in news_list %}
+            <div class="news-item">
+                <h3>{{ news.title }}</h3>
+                <p>{{ news.text }}</p>
+                {% if news.image_url %}
+                    <img src="{{ url_for('static', filename=news.image_url) }}" alt="News Image">
+                {% endif %}
+                <p><strong>Опублікував:</strong> {{ news.nickname }}</p>
+
+                <p><strong>Лайків:</strong> {{ news.likes }}</p>
+                <form action="{{ url_for('like', news_index=loop.index0) }}" method="post">
+                    <button type="submit">Лайкнути</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="form-container">
+        <a href="/news_form/{{ nickname }}" class="button">Опублікувати новину</a>
+    </div>
+
+    <div class="chat-button">
+        <a href="/chat/{{ nickname }}" class="chat-button">Чат</a>
+    </div>
+</body>
+</html>

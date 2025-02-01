@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ласкаво просимо</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Вітаємо! Введіть свій нікнейм:</h1>
+        <form action="/home" method="get">
+            <input type="text" name="nickname" required>
+            <button type="submit" class="button">Вхід</button>
+        </form>
+    </div>
+</body>
+</html>
